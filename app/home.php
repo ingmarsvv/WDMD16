@@ -15,9 +15,9 @@
             session_destroy();
         }
 
+// Vārda dienu meklētājs
         $months = array("1" => "janvārī","2" => "februārī","3" => "martā","4" => "aprīlī","5" => "maijā","6" => "jūnijā",
         "7" => "jūlijā","8" => "augustā","9" => "septembrī","10" => "oktobrī","11" => "novembrī","12" => "decembrī",);
-        print_r($_POST);
         $searchName = !empty($_POST["nameday"]) ? $_POST["nameday"] : "";
         $isFound = false;
         $dayNr = $monthName = $listName = "";
@@ -66,8 +66,40 @@
     </div>
 
 
-
-
+<!-- Kalendārs -->
+    <div>
+        <div class="text-center"><p class="font-bold text-3xl mt-1">June</p></div>
+        <table class="m-auto border border-separate border-slate-400 border-spacing-2 w-4/6">
+            <tr>
+                <th class="border border-slate-400 p-1 w-64">Monday</th>
+                <th class="border border-slate-400 p-1 w-64">Tuesday</th>
+                <th class="border border-slate-400 p-1 w-64">Wednesday</th>
+                <th class="border border-slate-400 p-1 w-64">Thursday</th>
+                <th class="border border-slate-400 p-1 w-64">Friday</th>
+                <th class="border border-slate-400 p-1 w-64">Saturday</th>
+                <th class="border border-slate-400 p-1 w-64">Sunday</th>
+            </tr>
+            <?php 
+                $dayNr = 1;
+                for ($i=0; $i<5; $i++){ ?>
+                <tr>
+                    <?php for ($j=0; $j<7; $j++){ ?>
+                        <td class="border border-slate-400 p-1 w-64">
+                            <?php if ($i < 1 && $j < 5){
+                            } else { ?>
+                                 <p class="font-semibold text-center text-xl mt-1"><?= $dayNr ?></p>
+                                 <?php foreach ($nameDays[6][$dayNr][0] as $name){ ?>
+                                    <p class="text-center"><?= $name ?></p>
+                                 <?php }
+                                 $dayNr++;
+                            }
+                            ?>
+                        </td>
+                    <?php } ?>
+                </tr>
+            <?php } ?>
+        </table>
+    </div>
 
     <?php include 'footer.php'; ?>
 </body>
